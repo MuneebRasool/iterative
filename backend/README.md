@@ -1,7 +1,7 @@
 1. Download Docker
 2. Copy this docker compose file at the root level of your directories.
 
-For example, you should have a IterativeCode directory with the frontend (IterativeNext), backend (Iterative) and converter (IterativeConverter) repositories in there as folders. This docker-compose.yml file should be at the same level as those folders.
+For example, you should have a IterativeCode directory with the frontend (IterativeNext), backend (Iterative) and Backend-Modules (IterativeConverter) repositories in there as folders. This docker-compose.yml file should be at the same level as those folders.
 
 ```
 version: "3.8"
