@@ -1,4 +1,3 @@
-
 # Iterative: AI-Powered React Code Generator and Iterative Deployment Platform
 
 ## Overview
@@ -145,6 +144,58 @@ Rollback migrations if needed:
 ```bash
 flask db downgrade
 ```
+
+---
+
+## Frontend Application Setup
+
+In addition to the backend services, Iterative includes a frontend application built with Next.js. This frontend provides an intuitive user interface for interacting with the platform's features.
+
+### Setting Up the Frontend
+
+1. Navigate to the frontend application directory.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Create a `.env.local` file in the root directory with the following content:
+   ```env
+   STYTCH_PROJECT_ENV=test
+   STYTCH_PROJECT_ID="project-test-5981764b-bbf0-47f0-80d3-cae8de7c258c"
+   NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN="public-token-test-14b26229-48ce-4a71-ba1c-3531f21ea5fa"
+   STYTCH_SECRET="secret-test-NddFy9yYTlTli5w6_2TYUDSzQ3ScUiagPRQ="
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+5. Access the frontend application at:
+   ```plaintext
+   http://localhost:3000
+   ```
+
+---
+
+## Additional Docker Deployment Options
+
+From the **iterativeconverter-main** repository, additional Docker deployment options are available for varying CPU architectures:
+
+1. Build and deploy the backend with Docker:
+   ```bash
+   docker build -t iterative-backend .
+   ```
+
+2. For CPU-specific builds:
+   ```bash
+   docker buildx build --platform linux/amd64 -t iterative-backend .
+   ```
+
+3. To deploy locally using Docker Compose:
+   ```bash
+   docker compose up --build
+   ```
+
+---
 
 ## Contributing
 We welcome contributions! Please see `CONTRIBUTING.md` for guidelines.
