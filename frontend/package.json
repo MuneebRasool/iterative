@@ -1,0 +1,55 @@
+{
+  "name": "next_app",
+  "version": "0.1.0",
+  "cacheDirectories": [
+    ".next/cache"
+  ],
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md|tsx)\""
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.1.1",
+    "@mantine/core": "^7.4.1",
+    "@mantine/hooks": "^7.4.1",
+    "@mantine/notifications": "^7.4.1",
+    "@stytch/nextjs": "^15.0.0",
+    "@stytch/vanilla-js": "^3.3.0",
+    "axios": "^1.6.2",
+    "easy-react-text-loop": "^1.0.2",
+    "flowbite-react": "^0.7.2",
+    "iframe-resizer-react": "^1.1.0",
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.0.1",
+    "react-markdown": "^9.0.1",
+    "react-type-animation": "^3.2.0",
+    "socket.io-client": "^4.7.2",
+    "tabler-icons-react": "^1.56.0",
+    "zustand": "^4.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.16",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8.4.33",
+    "postcss-preset-mantine": "^1.12.3",
+    "postcss-simple-vars": "^7.0.1",
+    "prettier": "^3.1.1",
+    "prettier-plugin-tailwindcss": "^0.5.9",
+    "tailwindcss": "^3.4.0",
+    "typescript": "^5"
+  },
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ]
+}
