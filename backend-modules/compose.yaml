@@ -1,0 +1,16 @@
+services:
+  server:
+    container_name: iterative-converter
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - PORT=3001
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3001:3001
+    volumes:
+      - ./:/usr/local/apps/myapp/dev
+

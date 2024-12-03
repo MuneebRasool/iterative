@@ -1,0 +1,56 @@
+<textarea id="code" rows="15" cols="80">import {useState} from 'react'
+  import {Button} from '@mui/material'
+  
+  export default function App() {
+    const [count, setCount] = useState(0)
+  
+    return &lt;&gt;
+      &lt;Button variant="outlined" onClick={() => setCount(c => c + 1)}>
+        Count: {count}
+      &lt;/Button&gt;
+    &lt;/&gt;
+  }
+  </textarea>
+  
+  <p><button onclick="run()">Run!</button></p>
+  
+  <div id="target" style="border: 1px solid; padding: 1em; white-space: pre;">Press [Run].</div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script>
+    // Because 'react' and 'react-dom' should always use the same one,
+    // it is externalized from the server bundle and we inject them here.
+    window.require = (name) => {
+      if (name === 'react') return React
+      if (name === 'react-dom') return ReactDOM
+      throw new Error('Failed to require ' + JSON.stringify(name))
+    }
+  
+    let root
+  
+    function run() {
+      fetch('https://converter.goiterative.com/build', {
+        method: 'POST',
+        body: document.getElementById('code').value
+      })
+      .then(async r => {
+        if (r.ok) return r.text()
+        throw new Error(await r.text())
+      })
+      .then(bundle => {
+        // bundle is a string like 'var serverBundle = (() => mod)()'
+        const mod = Function(bundle + '\nreturn MyApp;')()
+        const App = mod && mod.__esModule ? mod.default : mod
+  
+        root && root.unmount()
+        root = ReactDOM.createRoot(document.getElementById('target'))
+        root.render(React.createElement(App)) // root.render(<App />)
+      })
+      .catch(err => {
+        root && root.unmount()
+        root = null
+        document.getElementById('target').textContent = err + ''
+      })
+    }
+  </script>
