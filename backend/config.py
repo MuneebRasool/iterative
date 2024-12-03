@@ -13,27 +13,33 @@ class Base(object):
   OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', "test-api-key")
   
 class DevelopmentConfig(Base):
-  DEBUG=True
-  DEVELOPMENT=True
-  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+  DEBUG = True
+  DEVELOPMENT = True
+  FLASK_ENV = "development"
   REDIS_URL = "redis://localhost:6379/0"
-  FLASK_ENV="development"
+  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "postgresql://username:password@localhost:5432/database_name").replace('postgres://', 'postgresql://')
   CELERY = dict(
     broker_url=REDIS_URL,
     result_backend=REDIS_URL,
   )
   SESSION_REDIS = redis.from_url(REDIS_URL)
   CORS_ORIGINS = ["http://localhost:3000"]
-  
+
 class ProductionConfig(Base):
-  DEBUG=False
-  DEVELOPMENT=False
-  FLASK_ENV="production"
-  REDIS_URL=os.environ.get("REDISCLOUD_URL", "redis://localhost:6379")
-  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "fake-db-url").replace('postgres://', 'postgresql://')
+  DEBUG = False
+  DEVELOPMENT = False
+  FLASK_ENV = "production"
+  REDIS_URL = os.environ.get("REDISCLOUD_URL", "redis://localhost:6379")
+  SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "postgresql://username:password@localhost:5432/database_name").replace('postgres://', 'postgresql://')
   CELERY = dict(
     broker_url=REDIS_URL,
     result_backend=REDIS_URL,
   )
   SESSION_REDIS = redis.from_url(REDIS_URL)
-  CORS_ORIGINS = ["https://www.goiterative.com", "www.goiterative.com", "http://localhost:3000", "https://staging.goiterative.com", "staging.goiterative.com"]
+  CORS_ORIGINS = [
+    "https://www.goiterative.com",
+    "www.goiterative.com",
+    "http://localhost:3000",
+    "https://staging.goiterative.com",
+    "staging.goiterative.com",
+  ]
