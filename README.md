@@ -24,16 +24,17 @@ Iterative is an advanced AI-powered platform that simplifies frontend developmen
 - Stytch API credentials
 
 ### Installation
-1. Clone the repository:
+1. Step 1: Clone the repository:
    ```bash
    git clone https://github.com/your-username/iterative.git
    cd iterative
+
 ## Configure Environment Variables
 2. Create a `.env` file in the project root:
 
 ```env
 DATABASE_URL=postgresql://postgres:postgres@db:5432
-SECRET_KEY=your-secret-key
+SECRET_KEY=your-secret-key (Generate one using python -c "import secrets; print(secrets.token_hex(32))" and add it to your .env file.)
 OPENAI_API_KEY=your-openai-api-key
 STYTCH_PROJECT_ID=your-stytch-project-id
 STYTCH_SECRET=your-stytch-secret
@@ -54,12 +55,136 @@ Run the database migrations with the command:
 flask db upgrade
 ```
 
-## Access the API
-Visit the API at:
+---
 
-```plaintext
-http://localhost:8000
+### Step 2: Set Up Environment Variables
+
+Set up `.env` files for the backend, frontend, and backend modules:
+
+#### Backend
+
+Create a `.env` file in the `backend/` folder with the following:
+
+```env
+DATABASE_URL=postgresql://postgres:postgres@db:5432
+SECRET_KEY=your-secret-key
+OPENAI_API_KEY=your-openai-api-key
 ```
+
+#### Frontend
+
+Create a `.env.local` file in the `frontend/` folder with the following:
+
+```env
+STYTCH_PROJECT_ENV=test
+STYTCH_PROJECT_ID=your-stytch-project-id
+NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=your-stytch-public-token
+STYTCH_SECRET=your-stytch-secret
+```
+
+#### Backend Modules
+
+Create a `.env` file in the `backend-modules/` folder with the following:
+
+```env
+BACKEND_HOST=http://localhost:8000
+```
+
+---
+
+### Step 3: Install Dependencies
+
+#### Backend
+
+Navigate to the `backend/` folder:
+
+```bash
+cd backend
+```
+
+Install Python dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+#### Frontend
+
+Navigate to the `frontend/` folder:
+
+```bash
+cd frontend
+```
+
+Install Node.js dependencies:
+
+```bash
+npm install
+```
+
+#### Backend Modules
+
+Navigate to the `backend-modules/` folder:
+
+```bash
+cd backend-modules
+```
+
+Install Node.js dependencies:
+
+```bash
+npm install
+```
+
+---
+
+### Step 4: Run the Application
+
+#### Using Docker Compose
+
+From the root of the repository, run:
+
+```bash
+docker-compose up --build
+```
+
+Access the applications:
+- Backend: [http://localhost:8000](http://localhost:8000)
+- Frontend: [http://localhost:3000](http://localhost:3000)
+- Backend Modules: [http://localhost:8080](http://localhost:8080)
+
+#### Without Docker (Manual Start)
+
+**Start the Backend:**
+
+```bash
+cd backend
+flask db upgrade
+flask run
+```
+
+**Start the Frontend:**
+
+```bash
+cd frontend
+npm run dev
+```
+
+**Start the Backend Modules:**
+
+```bash
+cd backend-modules
+node server.js
+```
+
+---
+
+### Troubleshooting
+
+- **Database Errors**: Ensure your `DATABASE_URL` in `.env` is correct and the database server is running.
+- **Port Conflicts**: Make sure no other applications are running on ports 8000, 3000, or 8080.
+
+--------
 
 ## React Code Generation
 Send a POST request to `/api/generate` with project details to generate React code.
