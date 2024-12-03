@@ -23,8 +23,8 @@ Iterative is an advanced AI-powered platform that simplifies frontend developmen
 - OpenAI API Key
 - Stytch API credentials
 
-### Installation
-1. Step 1: Clone the repository:
+### Step 1: Installation
+1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/iterative.git
    cd iterative
