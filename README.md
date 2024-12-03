@@ -34,12 +34,13 @@ Iterative is an advanced AI-powered platform that simplifies frontend developmen
 
 ```env
 DATABASE_URL=postgresql://postgres:postgres@db:5432
-SECRET_KEY=your-secret-key (Generate one using python -c "import secrets; print(secrets.token_hex(32))" and add it to your .env file.)
+SECRET_KEY=your-secret-key
 OPENAI_API_KEY=your-openai-api-key
 STYTCH_PROJECT_ID=your-stytch-project-id
 STYTCH_SECRET=your-stytch-secret
 STYTCH_PROJECT_ENV=test
 ```
+(Generate Secret Key using python -c "import secrets; print(secrets.token_hex(32))" and add it to your .env file.)
 
 ## Build and Run the Application
 To build and run the application, use the following command:
