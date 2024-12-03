@@ -9,8 +9,7 @@ Iterative is an advanced AI-powered platform that simplifies frontend developmen
 3. **Version Control**: Enables reverting to previous project states and conducting A/B tests.
 4. **Secure Deployment**: Deploy and manage project states with password-protected access.
 5. **Real-Time Collaboration**: Leverage Socket.IO for live code updates and feedback.
-6. **Health Monitoring**: API endpoints for checking system health and task progress.
-7. **Authentication**: Stytch-powered secure user authentication.
+6. **Authentication**: Stytch-powered secure user authentication.
 
 ## Getting Started
 
