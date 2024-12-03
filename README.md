@@ -48,13 +48,6 @@ You can generate a secret key for your `.env` file using the following Python co
 python -c "import secrets; print(secrets.token_hex(32))"
 ```
 
-## Build and Run the Application
-To build and run the application, use the following command:
-
-```bash
-docker-compose -f compose-dev.yaml up --build
-```
-
 ## Run Database Migrations
 Run the database migrations with the command:
 
