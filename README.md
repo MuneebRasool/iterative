@@ -35,6 +35,7 @@ OPENAI_API_KEY=your-openai-api-key
 STYTCH_PROJECT_ID=your-stytch-project-id
 STYTCH_SECRET=your-stytch-secret
 STYTCH_PROJECT_ENV=test
+```
 
 ## Build and Run the Application
 To build and run the application, use the following command:
