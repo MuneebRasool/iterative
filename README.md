@@ -204,4 +204,4 @@ We welcome contributions! Please see `CONTRIBUTING.md` for guidelines.
 This project is licensed under the MIT License. See `LICENSE` for details.
 
 ## Acknowledgments
-Thanks to OpenAI for powering React code generation and the open-source community for their contributions.
+Thanks to OpenAI for powering React code generation and the open-source community for their contributions. Also special thanks to Kai Mou (/kaimou1357) for building out a huge part of Iterative!!
