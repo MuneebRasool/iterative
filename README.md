@@ -40,7 +40,13 @@ STYTCH_PROJECT_ID=your-stytch-project-id
 STYTCH_SECRET=your-stytch-secret
 STYTCH_PROJECT_ENV=test
 ```
-(Generate Secret Key using python -c "import secrets; print(secrets.token_hex(32))" and add it to your .env file.)
+#### Generate a Secret Key
+
+You can generate a secret key for your `.env` file using the following Python command:
+
+```bash
+python -c "import secrets; print(secrets.token_hex(32))"
+```
 
 ## Build and Run the Application
 To build and run the application, use the following command:
