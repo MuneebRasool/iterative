@@ -11,6 +11,9 @@ Iterative is an advanced AI-powered platform that simplifies frontend developmen
 5. **Real-Time Collaboration**: Leverage Socket.IO for live code updates and feedback.
 6. **Authentication**: Stytch-powered secure user authentication.
 
+**🚀 Demo Screencast:** [Watch the demo on YouTube](https://youtu.be/WD9ythRbt8Q?si=paMO-YUa9gYWwaSQ)
+
+
 ## Getting Started
 
 ### Prerequisites
