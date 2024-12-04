@@ -1,4 +1,5 @@
 import StytchProvider from "./components/StytchProvider"
+import { MantineProvider, AppShell } from "@mantine/core"
 
 export const metadata = {
     title: 'Next.js',
@@ -11,10 +12,12 @@ export const metadata = {
     children: React.ReactNode
   }) {
     return (
-      <StytchProvider>
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-      </StytchProvider>
+        <MantineProvider withGlobalStyles withNormalizeCSS>
+          <AppShell>
+            <StytchProvider children={children} >
+              {children}
+            </StytchProvider>
+          </AppShell>
+        </MantineProvider>
     )
   }
