@@ -13,11 +13,13 @@ export const metadata = {
   export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
       <StytchProvider children>
+        <html><body>
         <MantineProvider withGlobalStyles withNormalizeCSS>
           <LayoutWrapper children>
             {children}
           </LayoutWrapper>
         </MantineProvider>
+        </body></html>
       </StytchProvider>
     )
   }
