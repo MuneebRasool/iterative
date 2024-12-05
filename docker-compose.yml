@@ -1,21 +1,24 @@
 services:
-  backend:
+  iterative_backend:
+    container_name: iterative_backend
     build: ./backend
     ports:
       - "8000:8000"
     env_file:
-      - ./backend/.env
+      - .env
 
-  frontend:
+  iterative_frontend:
+    container_name: iterative_frontend
     build: ./frontend
     ports:
       - "3000:3000"
     env_file:
-      - ./frontend/.env.local
+      - .env
 
-  backend-modules:
+  iterative_backend_modules:
+    container_name: iterative_backend_modules
     build: ./backend-modules
     ports:
       - "8080:8080"
     env_file:
-      - ./backend-modules/.env
+      - backend-modules/.env
