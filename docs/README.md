@@ -46,12 +46,13 @@ ln .env frontend/.env.local # Must not be a symlink
 
 ___
 
-### Step 2: Build and Run
+### Step 2: Build database
+
+> [!Important]
+> Postgres database is required, and credentials should be in the previously mentioned env. See the Postgres Docker image for help setting up a container.
 
 ```bash
-# If you have previously built the imgae, you can skip the first command
-docker compose build
-docker compose run --rm iterative_backend bash -c "flask db init && flask db migrate && flask db upgrade"
+docker compose run --rm --build iterative_backend bash -c "flask db init && flask db migrate && flask db upgrade"
 ```
 
 ___
