@@ -18,71 +18,46 @@ Iterative is an advanced AI-powered platform that simplifies frontend developmen
 
 ### Prerequisites
 - [Docker](https://www.docker.com/)
-- Python 3.8+
-- Git
 - OpenAI API Key
 - Stytch API credentials
 
-### Step 1: Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/iterative.git
-   cd iterative
+### Step 1: Environment Variables
 
-## Configure Environment Variables
-2. Create a `.env` file in the project root:
+Create a `.env` file in the project root:
 
 ```env
-DATABASE_URL=postgresql://postgres:postgres@db:5432
-SECRET_KEY=your-secret-key
-OPENAI_API_KEY=your-openai-api-key
-STYTCH_PROJECT_ID=your-stytch-project-id
-STYTCH_SECRET=your-stytch-secret
+DATABASE_URL=postgresql://user:pass@host:5432/db
+SECRET_KEY=
+OPENAI_API_KEY=
+STYTCH_PROJECT_ID=
+STYTCH_SECRET=
+NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=
 STYTCH_PROJECT_ENV=test
+ITERATIVE_ENV=dev
 ```
-#### Generate a Secret Key
 
-You can generate a secret key for your `.env` file using the following Python command:
+Secret keys can be generated on the fly with `openssl rand -base64 32`.
+
+Place a copy in the frontend build directory:
 
 ```bash
-python -c "import secrets; print(secrets.token_hex(32))"
+ln .env frontend/.env.local # Must not be a symlink
 ```
 
-## Run Database Migrations
-Run the database migrations with the command:
+___
+
+### Step 2: Build database
+
+> [!Important]
+> Postgres database is required, and credentials should be in the previously mentioned env. See the Postgres Docker image for help setting up a container.
 
 ```bash
-flask db upgrade
+docker compose run --rm --build iterative_backend bash -c "flask db init && flask db migrate && flask db upgrade"
 ```
 
----
+___
 
-### Step 2: Set Up Environment Variables
-
-Set up `.env` files for the backend, frontend, and backend modules:
-
-#### Backend
-
-Create a `.env` file in the `backend/` folder with the following:
-
-```env
-DATABASE_URL=postgresql://postgres:postgres@db:5432
-SECRET_KEY=your-secret-key
-OPENAI_API_KEY=your-openai-api-key
-```
-
-#### Frontend
-
-Create a `.env.local` file in the `frontend/` folder with the following:
-
-```env
-STYTCH_PROJECT_ENV=test
-STYTCH_PROJECT_ID=your-stytch-project-id
-NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=your-stytch-public-token
-STYTCH_SECRET=your-stytch-secret
-```
-
-#### Backend Modules
+### Step 3: Backend Modules Configuration
 
 Create a `.env` file in the `backend-modules/` folder with the following:
 
@@ -90,92 +65,18 @@ Create a `.env` file in the `backend-modules/` folder with the following:
 BACKEND_HOST=http://localhost:8000
 ```
 
----
-
-### Step 3: Install Dependencies
-
-#### Backend
-
-Navigate to the `backend/` folder:
-
-```bash
-cd backend
-```
-
-Install Python dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-#### Frontend
-
-Navigate to the `frontend/` folder:
-
-```bash
-cd frontend
-```
-
-Install Node.js dependencies:
-
-```bash
-npm install
-```
-
-#### Backend Modules
-
-Navigate to the `backend-modules/` folder:
-
-```bash
-cd backend-modules
-```
-
-Install Node.js dependencies:
-
-```bash
-npm install
-```
-
----
+___
 
 ### Step 4: Run the Application
 
-#### Using Docker Compose
-
-From the root of the repository, run:
-
 ```bash
-docker-compose up --build
+docker-compose up -d --build
 ```
 
 Access the applications:
 - Backend: [http://localhost:8000](http://localhost:8000)
 - Frontend: [http://localhost:3000](http://localhost:3000)
 - Backend Modules: [http://localhost:8080](http://localhost:8080)
-
-#### Without Docker (Manual Start)
-
-**Start the Backend:**
-
-```bash
-cd backend
-flask db upgrade
-flask run
-```
-
-**Start the Frontend:**
-
-```bash
-cd frontend
-npm run dev
-```
-
-**Start the Backend Modules:**
-
-```bash
-cd backend-modules
-node server.js
-```
 
 ---
 
@@ -233,44 +134,11 @@ Key Python dependencies:
 - Alembic for database migrations
 - Asynchronous Task Management (`celery`, `redis`)
 
-Install dependencies locally (if not using Docker):
-```bash
-pip install -r requirements.txt
-```
-
 ## Running Tests
 Run the test suite:
 ```bash
 pytest
 ```
-
-## Deployment
-Build the Docker image:
-```bash
-docker build -t iterative .
-```
-
-Deploy on platforms like AWS, Heroku, or any Docker-compatible environment.
-
-Configure production-specific environment variables in `.env`.
-
-## Database Migration Workflow
-Create a migration script:
-```bash
-flask db migrate -m "Your migration message"
-```
-
-Apply migrations:
-```bash
-flask db upgrade
-```
-
-Rollback migrations if needed:
-```bash
-flask db downgrade
-```
-
----
 
 ## Frontend Application Setup
 

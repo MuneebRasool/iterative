@@ -6,7 +6,7 @@ FROM node:${NODE_VERSION}-alpine
 
 # Use production node environment by default.
 ENV NODE_ENV production
-ENV PORT=8080 # Default port (replace with the correct one if necessary)
+ENV PORT=8080
 
 WORKDIR /usr/src/app
 
