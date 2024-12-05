@@ -2,6 +2,7 @@ import StytchProvider from "./components/StytchProvider"
 import { MantineProvider } from "@mantine/core"
 import LayoutWrapper from "./components/LayoutWrapper"
 
+//import "@mantine/core/styles.css"
 import "./globals.css"
 
 export const metadata = {
@@ -12,11 +13,9 @@ export const metadata = {
   export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
       <StytchProvider children>
-        <MantineProvider
-          withGlobalStyles
-          withNormalizeCSS
-        >
+        <MantineProvider withGlobalStyles withNormalizeCSS>
           <LayoutWrapper children>
+            {children}
           </LayoutWrapper>
         </MantineProvider>
       </StytchProvider>
