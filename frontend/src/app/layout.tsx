@@ -2,7 +2,7 @@ import StytchProvider from "./components/StytchProvider"
 import { MantineProvider } from "@mantine/core"
 import LayoutWrapper from "./components/LayoutWrapper"
 
-//import "@mantine/core/styles.css"
+import "@mantine/core/styles.css"
 import "./globals.css"
 
 export const metadata = {
