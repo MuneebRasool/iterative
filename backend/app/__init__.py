@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_bcrypt import Bcrypt
 from celery import Celery, Task
+from . import config
 from app.extensions import db, login_manager
   
 socketio = SocketIO()
@@ -25,7 +26,11 @@ def celery_init_app(app: Flask) -> Celery:
   
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(os.environ.get("APP_SETTINGS"))
+
+    if os.environ.get("ITERATIVE_ENV", "production").lower() in ["production", "prod"]:
+        app.config.from_object(config.ProductionConfig)
+    else:
+        app.config.from_object(config.DevelopmentConfig)
     
     # Initialize Flask extensions here
     migrate = Migrate(app, db)
