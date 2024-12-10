@@ -11,6 +11,10 @@ class Base(object):
   SESSION_KEY_PREFIX = 'Iterative:'
   SECRET_KEY = os.environ.get('SECRET_KEY', "secret_key")
   OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', "test-api-key")
+  CORS_ORIGINS = [
+    os.environ.get('NEXT_PUBLIC_API_BASE_URL', 'http://localhost:8000'),
+    os.environ.get('FRONTEND_HOSTNAME', 'http://localhost:3000'),
+    ]
   
 class DevelopmentConfig(Base):
   DEBUG=True
@@ -23,7 +27,6 @@ class DevelopmentConfig(Base):
     result_backend=REDIS_URL,
   )
   SESSION_REDIS = redis.from_url(REDIS_URL)
-  CORS_ORIGINS = ["http://localhost:3000"]
   
 class ProductionConfig(Base):
   DEBUG=False
@@ -36,4 +39,3 @@ class ProductionConfig(Base):
     result_backend=REDIS_URL,
   )
   SESSION_REDIS = redis.from_url(REDIS_URL)
-  CORS_ORIGINS = ["https://www.goiterative.com", "www.goiterative.com", "http://localhost:3000", "https://staging.goiterative.com", "staging.goiterative.com"]
