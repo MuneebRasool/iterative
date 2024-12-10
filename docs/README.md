@@ -34,6 +34,10 @@ STYTCH_SECRET=
 NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=
 STYTCH_PROJECT_ENV=test
 ITERATIVE_ENV=dev
+
+# Application Settings
+NEXT_PUBLIC_API_BASE_URL=           # Default: http://localhost:8000
+NEXT_PUBLIC_CONVERTER_BASE_URL=     # Default: http://localhost:3001
 ```
 
 Secret keys can be generated on the fly with `openssl rand -base64 32`.
