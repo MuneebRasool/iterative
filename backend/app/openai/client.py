@@ -10,22 +10,15 @@ class OpenAIClient:
       )
   
   def chat_completion(self, messages, max_tokens, streaming):
-    try:
-      response = self.client.chat.completions.create(
-          model=OpenAIConstants.MODEL_NAME,
-          messages=messages,
-          temperature=0.1,
-          max_tokens=max_tokens,
-          top_p=1,
-          frequency_penalty=0,
-          presence_penalty=0,
-          stream=streaming)
-
-      if response.status_code != 200:
-        raise Exception(response.text)
-      
-    except Exception as e:
-      print(f"OpenAI Error: {e}")
+    response = self.client.chat.completions.create(
+        model=OpenAIConstants.MODEL_NAME,
+        messages=messages,
+        temperature=0.1,
+        max_tokens=max_tokens,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+        stream=streaming)
     
     if not streaming:
       return response
