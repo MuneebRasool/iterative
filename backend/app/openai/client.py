@@ -4,7 +4,10 @@ from app.openai.config import OpenAIConstants
 
 class OpenAIClient:
   def __init__(self):
-    self.client = OpenAI(api_key = os.environ.get('OPENAI_API_KEY'), organization = 'org-tUXaB2qekHhDUPyZzOB2PnDT')
+    self.client = OpenAI(
+      api_key = os.environ.get('OPENAI_API_KEY'),
+      organization = os.environ.get('OPENAI_ORG_ID'),
+      )
   
   def chat_completion(self, messages, max_tokens, streaming):
     try:
@@ -17,6 +20,9 @@ class OpenAIClient:
           frequency_penalty=0,
           presence_penalty=0,
           stream=streaming)
+
+      if response.status_code != 200:
+        raise Exception(response.text)
       
     except Exception as e:
       print(f"OpenAI Error: {e}")

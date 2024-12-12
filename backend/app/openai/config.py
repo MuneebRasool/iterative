@@ -1,4 +1,7 @@
+import os
+
 class OpenAIConstants:
-  MODEL_NAME = "gpt-4o-mini"
-  TOKEN_LIMIT = 128000
-  RECOMMENDATION_TOKEN_LIMIT = 128000
+  #TODO Bump default to gpt-4 of some variety when tiktoken is updated
+  MODEL_NAME = os.environ.get('OPENAI_MODEL', 'gpt-3.5-turbo')
+  TOKEN_LIMIT = 4096
+  RECOMMENDATION_TOKEN_LIMIT = 4096

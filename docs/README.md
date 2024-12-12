@@ -29,6 +29,8 @@ Create a `.env` file in the project root:
 DATABASE_URL=postgresql://user:pass@host:5432/db
 SECRET_KEY=
 OPENAI_API_KEY=
+OPENAI_ORG_ID=
+OPENAI_MODEL=gpt-3.5-turbo          # Default: gpt-3.5-turbo
 STYTCH_PROJECT_ID=
 STYTCH_SECRET=
 NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=
@@ -41,6 +43,10 @@ NEXT_PUBLIC_CONVERTER_BASE_URL=     # Default: http://localhost:3001
 ```
 
 Secret keys can be generated on the fly with `openssl rand -base64 32`.
+
+- The OpenAI API key used should be explicitly authorized to use the chosen model. This setting can be found in the __Limits__ tab of the project. In addition, the chosen model should be one of [\[this list\]](https://github.com/openai/tiktoken/blob/095924e02c85617df6889698d94515f91666c7ea/tiktoken/model.py#L13-L53). Additional models available soon. Using the default `gpt-3.5-turbo` is recommended for testing purposes.
+
+- When creating a new Stytch project, make sure to select __Consumer Authentication__ as the authentication type. This project does not currently support B2B SAAS Authentication. Stytch Project ID, Stytch Secret, and Stytch Public Token can be found on the new project's main page.
 
 Place a copy in the frontend build directory:
 
