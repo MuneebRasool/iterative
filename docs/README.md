@@ -29,6 +29,8 @@ Create a `.env` file in the project root:
 DATABASE_URL=postgresql://user:pass@host:5432/db
 SECRET_KEY=
 OPENAI_API_KEY=
+OPENAI_ORG_ID=
+OPENAI_MODEL=gpt-3.5-turbo          # Default: gpt-3.5-turbo
 STYTCH_PROJECT_ID=
 STYTCH_SECRET=
 NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=
