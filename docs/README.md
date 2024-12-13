@@ -39,7 +39,7 @@ ITERATIVE_ENV=dev
 
 # Application Settings
 NEXT_PUBLIC_API_BASE_URL=           # Default: http://localhost:8000
-NEXT_PUBLIC_CONVERTER_BASE_URL=http://iterative_backend_modules:8080
+NEXT_PUBLIC_CONVERTER_BASE_URL=     # Default: http://iterative_backend_modules:8080
 FRONTEND_HOSTNAME=                  # Default: http://localhost:3000
 ```
 
