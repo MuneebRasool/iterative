@@ -39,7 +39,8 @@ ITERATIVE_ENV=dev
 
 # Application Settings
 NEXT_PUBLIC_API_BASE_URL=           # Default: http://localhost:8000
-NEXT_PUBLIC_CONVERTER_BASE_URL=     # Default: http://localhost:3001
+NEXT_PUBLIC_CONVERTER_BASE_URL=http://iterative_backend_modules:8080
+FRONTEND_HOSTNAME=                  # Default: http://localhost:3000
 ```
 
 Secret keys can be generated on the fly with `openssl rand -base64 32`.
@@ -47,12 +48,6 @@ Secret keys can be generated on the fly with `openssl rand -base64 32`.
 - The OpenAI API key used should be explicitly authorized to use the chosen model. This setting can be found in the __Limits__ tab of the project. In addition, the chosen model should be one of [\[this list\]](https://github.com/openai/tiktoken/blob/095924e02c85617df6889698d94515f91666c7ea/tiktoken/model.py#L13-L53). Additional models available soon. Using the default `gpt-3.5-turbo` is recommended for testing purposes.
 
 - When creating a new Stytch project, make sure to select __Consumer Authentication__ as the authentication type. This project does not currently support B2B SAAS Authentication. Stytch Project ID, Stytch Secret, and Stytch Public Token can be found on the new project's main page.
-
-Place a copy in the frontend build directory:
-
-```bash
-ln .env frontend/.env.local # Must not be a symlink
-```
 
 ___
 
@@ -67,33 +62,19 @@ docker compose run --rm --build iterative_backend bash -c "flask db init && flas
 
 ___
 
-### Step 3: Backend Modules Configuration
-
-Create a `.env` file in the `backend-modules/` folder with the following:
-
-```env
-BACKEND_HOST=http://localhost:8000
-```
-
-___
-
-### Step 4: Run the Application
+### Step 3: Run the Application
 
 ```bash
 docker-compose up -d --build
 ```
 
-Access the applications:
-- Backend: [http://localhost:8000](http://localhost:8000)
-- Frontend: [http://localhost:3000](http://localhost:3000)
-- Backend Modules: [http://localhost:8080](http://localhost:8080)
+The application should now be accessible at [http://localhost:3000](http://localhost:3000) (or the hostname configured in your reverse proxy and in the .env file).
 
 ---
 
 ### Troubleshooting
 
 - **Database Errors**: Ensure your `DATABASE_URL` in `.env` is correct and the database server is running.
-- **Port Conflicts**: Make sure no other applications are running on ports 8000, 3000, or 8080.
 
 --------
 
@@ -149,35 +130,6 @@ Run the test suite:
 ```bash
 pytest
 ```
-
-## Frontend Application Setup
-
-In addition to the backend services, Iterative includes a frontend application built with Next.js. This frontend provides an intuitive user interface for interacting with the platform's features.
-
-### Setting Up the Frontend
-
-1. Navigate to the frontend application directory.
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Create a `.env.local` file in the root directory with the following content:
-   ```env
-   STYTCH_PROJECT_ENV=test
-   STYTCH_PROJECT_ID="project-test-5981764b-bbf0-47f0-80d3-cae8de7c258c"
-   NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN="public-token-test-14b26229-48ce-4a71-ba1c-3531f21ea5fa"
-   STYTCH_SECRET="secret-test-NddFy9yYTlTli5w6_2TYUDSzQ3ScUiagPRQ="
-   ```
-4. Start the development server:
-   ```bash
-   npm run dev
-   ```
-5. Access the frontend application at:
-   ```plaintext
-   http://localhost:3000
-   ```
-
----
 
 ## Additional Docker Deployment Options
 

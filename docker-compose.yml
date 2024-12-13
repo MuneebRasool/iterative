@@ -18,7 +18,4 @@ services:
   iterative_backend_modules:
     container_name: iterative_backend_modules
     build: ./backend-modules
-    ports:
-      - "8080:8080"
-    env_file:
-      - backend-modules/.env
+    # Exposes port 8080 within the Docker network
